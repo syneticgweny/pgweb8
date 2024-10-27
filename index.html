@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: #FFD1DC; /* Warna soft pink */
+            font-family: Arial, sans-serif;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input[type="text"], input[type="submit"] {
+            padding: 10px;
+            margin: 5px 0;
+            width: 95%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #FF69B4;
+            color: white;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #FF85B2;
+        }
+        label {
+            font-weight: bold;
+        }
+        #informasi {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Form Input Data Penduduk</h2>
+    <form action="input.php" method="post" onsubmit="return validateForm()">
+        <label for="kecamatan">Kecamatan:</label><br>
+        <input type="text" id="kecamatan" name="kecamatan" required><br>
+
+        <label for="longitude">Longitude:</label><br>
+        <input type="text" id="longitude" name="longitude" required><br>
+
+        <label for="latitude">Latitude:</label><br>
+        <input type="text" id="latitude" name="latitude" required><br>
+
+        <label for="luas">Luas:</label><br>
+        <input type="text" id="luas" name="luas" required><br>
+
+        <label for="jumlah_penduduk">Jumlah Penduduk:</label><br>
+        <input type="text" id="jumlah_penduduk" name="jumlah_penduduk" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi"></p>
+
+    <script>
+        function validateForm() {
+            let luas = document.getElementById("luas").value;
+            let longitude = document.getElementById("longitude").value;
+            let latitude = document.getElementById("latitude").value;
+            let informasi = "";
+
+            if (isNaN(luas) || luas < 1) {
+                informasi = "Luas harus berupa angka positif.";
+                event.preventDefault();
+            }
+            if (isNaN(longitude) || isNaN(latitude)) {
+                informasi = "Koordinat harus berupa angka.";
+                event.preventDefault();
+            }
+
+            document.getElementById("informasi").innerHTML = informasi;
+        }
+    </script>
+</body>
+</html>
